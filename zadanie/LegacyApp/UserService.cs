@@ -37,7 +37,7 @@ namespace LegacyApp
                 LastName = lastName
             };
 
-            if (client.Type == "VeryImportantClient")
+            if (client.Type == "VeryImportantClient") //do klasy user
             {
                 user.HasCreditLimit = false;
             }
