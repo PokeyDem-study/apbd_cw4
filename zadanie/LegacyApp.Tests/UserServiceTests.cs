@@ -116,13 +116,26 @@ public class UserServiceTests //RefactoringExample -> rmb -> add new solution ->
         
         Assert.True(result);
     }
-    
+
+    [Fact]
+    public void AddUser_ReturnsFalseWhenNormalClientWithNoCreditLimit()
+    {
+        var userService = new UserService();
+        var result = new UserService().AddUser(
+            "Jan",
+            "Kowalski",
+            "kowalski@gmail.com",
+            DateTime.Parse("2001-01-01"),
+            5);
+        
+        Assert.False(result);
+    }
     // AddUser_ReturnsFalseWhenMissingAtSignAndDotInEmail +
     // AddUser_ReturnsFalseWhenYoungerThen21YearsOld +
     // AddUser_ReturnsTrueWhenVeryImportantClient +
     // AddUser_ReturnsTrueWhenImportantClient +
     // AddUser_ReturnsTrueWhenNormalClient +
-    // AddUser_ReturnsFalseWhenNormalClientWithNoCreditLimit
-    // AddUser_ThrowsExceptionWhenUserDoesNotExist
+    // AddUser_ReturnsFalseWhenNormalClientWithNoCreditLimit +
+    // AddUser_ThrowsExceptionWhenUserDoesNotExist +
     // AddUser_ThrowsExceptionWhenUserNoCreditLimitExistsForUser
 }
