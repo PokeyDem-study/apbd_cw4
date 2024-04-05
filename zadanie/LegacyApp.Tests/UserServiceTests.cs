@@ -130,12 +130,20 @@ public class UserServiceTests //RefactoringExample -> rmb -> add new solution ->
         
         Assert.False(result);
     }
-    // AddUser_ReturnsFalseWhenMissingAtSignAndDotInEmail +
-    // AddUser_ReturnsFalseWhenYoungerThen21YearsOld +
-    // AddUser_ReturnsTrueWhenVeryImportantClient +
-    // AddUser_ReturnsTrueWhenImportantClient +
-    // AddUser_ReturnsTrueWhenNormalClient +
-    // AddUser_ReturnsFalseWhenNormalClientWithNoCreditLimit +
-    // AddUser_ThrowsExceptionWhenUserDoesNotExist +
-    // AddUser_ThrowsExceptionWhenUserNoCreditLimitExistsForUser
+
+    [Fact]
+    public void AddUser_ThrowsExceptionWhenUserNoCreditLimitExistsForUser()
+    {
+        var userService = new UserService();
+        
+        Action action = () => { userService.AddUser(
+            "Jan",
+            "LastNameThatDoesntExistsInDataBase",
+            "kowalski@gmail.com",
+            DateTime.Parse("2000-01-01"),
+            1
+        );};
+        
+        Assert.Throws<ArgumentException>(action);
+    }
 }
