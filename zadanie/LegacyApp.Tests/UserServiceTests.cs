@@ -47,7 +47,7 @@ public class UserServiceTests //RefactoringExample -> rmb -> add new solution ->
         var userService = new UserService();
 
         var result = userService.AddUser(
-            null,
+            "Jan",
             "Kowalski",
             "kowalskigmailcom",
             DateTime.Parse("2000-01-01"),
@@ -56,8 +56,22 @@ public class UserServiceTests //RefactoringExample -> rmb -> add new solution ->
         
         Assert.False(result);
     }
+
+    [Fact]
+    public void ReturnsFalseWhenYoungerThen21YearsOld()
+    {
+        var userService = new UserService();
+        var result = userService.AddUser(
+            "Jan", 
+            "Kowalski", 
+            "kowalski@gmail.com", 
+            DateTime.Parse("2005-01-01"), 
+            1);
+        
+        Assert.False(result);
+    }
     
-    // AddUser_ReturnsFalseWhenMissingAtSignAndDotInEmail
+    // AddUser_ReturnsFalseWhenMissingAtSignAndDotInEmail +
     // AddUser_ReturnsFalseWhenYoungerThen21YearsOld
     // AddUser_ReturnsTrueWhenVeryImportantClient
     // AddUser_ReturnsTrueWhenImportantClient
