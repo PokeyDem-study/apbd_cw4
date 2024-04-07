@@ -4,7 +4,7 @@ namespace LegacyApp;
 
 public class Validator
 {
-    public bool ValidateUserData(string firstName, string secondName, string email, DateTime dateOfBirth)
+    public static bool ValidateUserData(string firstName, string secondName, string email, DateTime dateOfBirth)
     {
         return ValidateName(firstName) &&
                ValidateName(secondName) &&
@@ -12,17 +12,17 @@ public class Validator
                ValidateAge(dateOfBirth);
     }
 
-    public bool ValidateName(string name)
+    private static bool ValidateName(string name)
     {
-        return string.IsNullOrEmpty(name);
+        return !string.IsNullOrEmpty(name);
     }
 
-    public bool ValidateEmail(string email)
+    private static bool ValidateEmail(string email)
     {
         return email.Contains("@") && email.Contains(".");
     }
 
-    public bool ValidateAge(DateTime dateOfBirth)
+    private static bool ValidateAge(DateTime dateOfBirth)
     {
         var now = DateTime.Now;
         
