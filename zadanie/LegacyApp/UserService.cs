@@ -24,7 +24,7 @@ namespace LegacyApp
             
             user.DefineCreditLimits(client.Type);
 
-            if (!user.IsMeetingCreditRequirements())
+            if (!Validator.IsMeetingCreditRequirements(user))
                 return false;
 
             UserDataAccess.AddUser(user);

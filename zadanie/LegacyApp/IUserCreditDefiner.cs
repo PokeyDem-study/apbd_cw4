@@ -4,5 +4,6 @@ public interface IUserCreditDefiner
 {
     public void DefineCreditLimits(string clientType);
 
-    public bool IsMeetingCreditRequirements();
+    public int GetCreditLimit();
+
 }

@@ -32,4 +32,9 @@ public class Validator
 
         return age >= 21;
     }
+
+    public static bool IsMeetingCreditRequirements(User user)
+    {
+        return !(user.HasCreditLimit && user.CreditLimit < 500);
+    }
 }

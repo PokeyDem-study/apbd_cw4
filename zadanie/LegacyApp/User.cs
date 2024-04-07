@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Dynamic;
 
 namespace LegacyApp
 {
@@ -21,28 +22,22 @@ namespace LegacyApp
                     break;
                 
                 case "ImportantClient":
-                    using (var userCreditService = new UserCreditService())
-                    {
-                        int creditLimit = userCreditService.GetCreditLimit(LastName, DateOfBirth);
-                        creditLimit *= 2;
-                        CreditLimit = creditLimit;
-                    }
+                    int creditLimit = GetCreditLimit();
+                    creditLimit *= 2;
+                    CreditLimit = creditLimit;
                     break;
                 
                 default:
                     HasCreditLimit = true;
-                    using (var userCreditService = new UserCreditService())
-                    {
-                        int creditLimit = userCreditService.GetCreditLimit(LastName, DateOfBirth);
-                        CreditLimit = creditLimit;
-                    }
+                    CreditLimit = GetCreditLimit();
                     break;
             }
         }
 
-        public bool IsMeetingCreditRequirements()
+        public int GetCreditLimit()
         {
-            return !(HasCreditLimit && CreditLimit < 500);
+            using (var userCreditService = new UserCreditService())
+                return userCreditService.GetCreditLimit(LastName, DateOfBirth);
         }
     }
 }
